@@ -3,7 +3,7 @@ const { executarSQL } = require("../services");
 const router = require("express").Router();
 
 router.get("/", async (req, res) => {
-    res.send( await executarSQL("SELECT * FROM produtos;"));
+    res.send( await executarSQL("SELECT * FROM usuarios;"));
 });
 
 router.get("/:id", (req, res) => {
