@@ -28,6 +28,7 @@ async function criarUsuario(dados) {
     // return await executarSQL(`INSERT INTO usuarios (produto_nome, produto_preco, produto_desconto, produto_imagem, marca_id, categoria_id) VALUES ('${dados.produto_nome}', ${dados.produto_preco},${dados.produto_desconto},'${dados.produto_imagem}',${dados.marca_id},${dados.categoria_id})`);
 };
 
+
 async function editarUsuario(id, dados) {
     return await prisma.usuarios.update({
         where: { usuario_id: (id) },
