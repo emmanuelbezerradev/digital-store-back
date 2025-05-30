@@ -17,14 +17,9 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
     res.send(await editarProduto(req.params.id, req.body));
 });
-// router.put("/:id", (req, res) => {
-//     res.send(`Edita um produto com o id: ${req.params.id}`);
-// });
+
 router.delete("/:id", async (req,res) => {
     res.send(await apagarProduto(req.params.id));
 })
-// router.delete("/:id", (req, res) => {
-//     res.send(`Apaga um produto com o id: ${req.params.id}`);
-// });
 
 module.exports = router;
