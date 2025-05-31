@@ -1,4 +1,5 @@
 const { prisma } = require("../services")
+const bcrypt = require('bcrypt');
 
 async function buscarUsuarios() {
     try {
@@ -28,8 +29,16 @@ async function buscarUmUsuario(id) {
 
 async function criarUsuario(dados) {
     try {
+        // Criptografa a senha antes de salvar
+        const saltRounds = 10;
+        const senhaCriptografada = await bcrypt.hash(dados.usuario_senha, saltRounds);
+
+        // Cria o usuário com a senha criptografada
         return await prisma.usuarios.create({
-            data: dados
+            data: {
+                ...dados,
+                usuario_senha: senhaCriptografada
+            }
         });
     } catch (error) {
         return {
