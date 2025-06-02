@@ -46,14 +46,16 @@ async function criarUsuario(dados) {
             mensagem: error.message
         }
     }
-   
+
 };
 
 async function editarUsuario(id, dados) {
     try {
+        const senhaCriptografada = await bcrypt.hash(dados.usuario_senha, saltRounds);
         return await prisma.usuarios.update({
             where: { usuario_id: Number(id) },
-            data: dados
+            data: dados,
+            usuario_senha: senhaCriptografada
         })
     } catch (error) {
         return {
